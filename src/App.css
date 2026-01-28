@@ -1,0 +1,339 @@
+.app {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, 
+    #ffd3e1 0%, 
+    #ffc4d6 25%, 
+    #ffb8d1 50%, 
+    #f5c7d3 75%, 
+    #e8d5e0 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.app::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 192, 203, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 240, 245, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.content {
+  text-align: center;
+  z-index: 10;
+  animation: fadeInScale 1s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.cat-container {
+  margin: 0 auto 2rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.cat-container.worried .cat-body {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-5px) rotate(-5deg); }
+  75% { transform: translateX(5px) rotate(5deg); }
+}
+
+.cat {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+}
+
+.cat-container:hover .cat {
+  transform: scale(1.05);
+}
+
+.question {
+  font-family: 'Pacifico', cursive;
+  font-size: 3rem;
+  color: #8B1538;
+  margin-bottom: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(139, 21, 56, 0.2);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.buttons-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  position: relative;
+  min-height: 80px;
+  align-items: center;
+}
+
+button {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 1rem 3rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.yes-button {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+}
+
+.yes-button:hover {
+  transform: scale(1.1) rotate(-2deg);
+  box-shadow: 0 6px 25px rgba(76, 175, 80, 0.4);
+}
+
+.yes-button:active {
+  transform: scale(1.05);
+}
+
+.no-button {
+  background: linear-gradient(135deg, #f44336 0%, #da190b 100%);
+  color: white;
+  position: absolute;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.no-button:hover {
+  box-shadow: 0 6px 25px rgba(244, 67, 54, 0.4);
+}
+
+.hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.1rem;
+  color: #8B1538;
+  font-style: italic;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Floating hearts */
+.floating-heart {
+  position: absolute;
+  font-size: 2rem;
+  animation: floatHeart 4s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+@keyframes floatHeart {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+    opacity: 1;
+  }
+}
+
+/* Success screen */
+.app.success {
+  background: linear-gradient(135deg, 
+    #ff69b4 0%, 
+    #ff1493 25%, 
+    #ff69b4 50%, 
+    #ff85c1 75%, 
+    #ffa5d8 100%
+  );
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(10deg);
+  }
+}
+
+.success-content {
+  text-align: center;
+  z-index: 10;
+  animation: successPop 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes successPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-180deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.cat-container.celebration {
+  animation: celebrate 1s ease-in-out infinite;
+}
+
+@keyframes celebrate {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(-10deg);
+  }
+  75% {
+    transform: translateY(-20px) rotate(10deg);
+  }
+}
+
+.success-title {
+  font-family: 'Pacifico', cursive;
+  font-size: 5rem;
+  color: white;
+  margin: 1rem 0;
+  text-shadow: 4px 4px 8px rgba(139, 21, 56, 0.3);
+  animation: titleBounce 1s ease-in-out infinite;
+}
+
+@keyframes titleBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.success-message {
+  font-size: 2rem;
+  color: white;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.heart-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.burst-heart {
+  position: absolute;
+  font-size: 3rem;
+  animation: burstOut 2s ease-out infinite;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+@keyframes burstOut {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(
+      calc(cos(calc(var(--i) * 30deg)) * 300px),
+      calc(sin(calc(var(--i) * 30deg)) * 300px)
+    ) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .question {
+    font-size: 2rem;
+    padding: 0 1rem;
+  }
+
+  button {
+    font-size: 1.2rem;
+    padding: 0.8rem 2rem;
+  }
+
+  .buttons-container {
+    gap: 1rem;
+  }
+
+  .success-title {
+    font-size: 3.5rem;
+  }
+
+  .success-message {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .question {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 0.7rem 1.5rem;
+  }
+
+  .cat {
+    width: 150px;
+    height: 150px;
+  }
+
+  .success-title {
+    font-size: 2.5rem;
+  }
+
+  .success-message {
+    font-size: 1.2rem;
+  }
+}
